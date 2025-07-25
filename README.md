@@ -1,5 +1,9 @@
 # Onloq - Privacy-First Local Activity Logger
 
+<div align="center">
+  <img src="icon.png" alt="Onloq Logo" width="200" height="200">
+</div>
+
 > **On-device activity and code change logger with AI summarization**
 
 Onloq is a privacy-first local logger that tracks your development activities and code changes, then uses Ollama (running locally) to generate insightful daily summaries. Everything runs on your machine - no data leaves your device.
