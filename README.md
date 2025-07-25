@@ -81,17 +81,42 @@ The demo will test:
 
 ## 📖 Usage
 
-### Initialize Configuration
+### 🚀 Quick Setup (Fully Automatic)
+
+For a completely hands-off experience:
+
+```bash
+# Windows: Run the automation setup
+.\scripts\Install-OnloqService.ps1
+
+# Or manually enable automation
+python main.py init
+python main.py auto --enable --time "20:00"
+python main.py run --daemon
+```
+
+This will:
+- ✅ Configure Onloq to start automatically at login
+- ✅ Generate daily summaries at 8 PM
+- ✅ Send desktop notifications when summaries are ready
+- ✅ Open summary files automatically
+
+### Manual Configuration
+
+#### Initialize Configuration
 ```bash
 python main.py init --watch-dirs ".,C:\\MyProjects,D:\\Code"
 ```
 
-### Start Logging
+#### Start Logging
 ```bash
 # Interactive mode
 python main.py run
 
-# Daemon mode (background)
+# Daemon mode (background) with auto-summarization
+python main.py run --daemon --auto-summarize
+
+# Just logging (no auto-summarization)
 python main.py run --daemon
 ```
 
@@ -108,6 +133,22 @@ python main.py summarize --model gemma2
 
 # Save to specific file
 python main.py summarize --output-file "my_summary.md"
+```
+
+### Automation Commands
+
+```bash
+# Configure automatic daily summaries
+python main.py auto --enable --time "20:00" --model "qwen2.5"
+
+# Check automation schedule
+python main.py schedule
+
+# Test notifications
+python main.py notify --test
+
+# Disable automation
+python main.py auto --no-enable
 ```
 
 ### Check Status
@@ -233,13 +274,17 @@ MIT License - see LICENSE file for details.
 
 ## 🛣 Roadmap
 
+- [x] **Automatic daily summarization** ✅
+- [x] **Desktop notifications** ✅
+- [x] **Windows startup automation** ✅
 - [ ] Cross-platform support (macOS, Linux)
-- [ ] Automatic daily summarization
 - [ ] Web dashboard for viewing logs
-- [ ] Export to different formats
+- [ ] Export to different formats (PDF, JSON, CSV)
 - [ ] Integration with Git for commit analysis
 - [ ] Productivity analytics and insights
 - [ ] Plugin system for custom trackers
+- [ ] Mobile companion app for notifications
+- [ ] Team sharing features (optional)
 
 ---
 

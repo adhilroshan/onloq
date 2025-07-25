@@ -47,8 +47,9 @@ class Config:
             },
             "summarization": {
                 "default_model": "qwen2.5",
-                "auto_summarize": False,
-                "summarize_time": "23:59"
+                "auto_summarize": True,
+                "summarize_time": "23:59",
+                "periodic_reminders": False
             }
         }
         
