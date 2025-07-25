@@ -12,7 +12,7 @@ with open("requirements.txt", "r", encoding="utf-8") as fh:
 
 setup(
     name="onloq",
-    version="0.1.0",
+    version="0.2.0",
     author="Developer",
     author_email="dev@example.com",
     description="Privacy-first local activity and code change logger with AI summarization",
