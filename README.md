@@ -58,6 +58,27 @@ pip install -r requirements-dev.txt
 ollama pull qwen2.5
 ```
 
+## 🎯 Quick Demo
+
+Test Onloq functionality before installation:
+
+```bash
+# Clone the repository
+git clone https://github.com/adhilroshan/onloq.git
+cd onloq
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the demo
+python demo.py
+```
+
+The demo will test:
+- ✅ Configuration management
+- ✅ Database operations
+- ✅ AI summarizer (if Ollama is available)
+
 ## 📖 Usage
 
 ### Initialize Configuration
