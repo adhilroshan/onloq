@@ -18,7 +18,7 @@ setup(
     description="Privacy-first local activity and code change logger with AI summarization",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/username/onloq",
+    url="https://github.com/adhilroshan/onloq",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 3 - Alpha",

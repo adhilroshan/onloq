@@ -39,14 +39,14 @@ pip install onloq
 
 ### Option 2: Install from Source
 ```bash
-git clone https://github.com/username/onloq.git
+git clone https://github.com/adhilroshan/onloq.git
 cd onloq
 pip install -e .
 ```
 
 ### Option 3: Development Setup
 ```bash
-git clone https://github.com/username/onloq.git
+git clone https://github.com/adhilroshan/onloq.git
 cd onloq
 pip install -r requirements-dev.txt
 ```
