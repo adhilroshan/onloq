@@ -9,7 +9,9 @@ import threading
 from pathlib import Path
 from typing import List, Dict, Optional
 from watchdog.observers import Observer
+from watchdog.observers.polling import PollingObserver
 from watchdog.events import FileSystemEventHandler
+import sys
 
 from storage.database import Database
 from utils.config import Config
@@ -177,7 +179,14 @@ class CodeLogger:
         self.config = Config()
         self.watch_dirs = watch_directories or self.config.get_watch_directories()
         
-        self.observer = Observer()
+        # Use PollingObserver for better Windows compatibility
+        try:
+            self.observer = Observer()
+        except Exception:
+            # Fallback to polling observer if native observer fails
+            self.observer = PollingObserver()
+            print("ℹ️  Using polling observer for file watching")
+        
         self.event_handler = CodeChangeHandler(database, self.config)
         self.running = False
     
@@ -232,9 +241,24 @@ class CodeLogger:
             else:
                 print(f"⚠️  Directory not found: {watch_path}")
         
-        # Start observer
-        self.observer.start()
-        print("🚀 Code change monitoring started")
+        # Start observer with error handling
+        try:
+            self.observer.start()
+            print("🚀 Code change monitoring started")
+        except Exception as e:
+            print(f"⚠️  Failed to start file observer: {e}")
+            print("🔄 Retrying with polling observer...")
+            self.observer = PollingObserver()
+            for watch_dir in self.watch_dirs:
+                watch_path = Path(watch_dir).resolve()
+                if watch_path.exists():
+                    self.observer.schedule(
+                        self.event_handler,
+                        str(watch_path),
+                        recursive=True
+                    )
+            self.observer.start()
+            print("🚀 Code change monitoring started (polling mode)")
         
         try:
             while self.running:
